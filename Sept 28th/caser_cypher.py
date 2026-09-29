@@ -1,11 +1,10 @@
 # Caesar cipher using manual alphabet indexes and modulo overflow
 
-alphabet = list("abcdefghijklmnopqrstuvwxyz")
+alphabet = "abcdefghijklmnopqrstuvwxyz"
 
 
 def encrypt(text, shift):
     result = []
-    shift = shift
 
     for char in text:
         if char.isalpha():
