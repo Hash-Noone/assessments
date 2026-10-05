@@ -1,7 +1,7 @@
 res_stack = []
 output = 0
 while True:
-    input_str = input("Enter a operator  (+, -, *, /) and number separated by a space or undo to undo or 'exit' to quit: ")
+    input_str = input("Enter a operator  (+, -, *, /) and number separated by a space or undo to undo or 'exit' to quit: ").strip()
     if input_str.lower() == 'exit':
         break
     elif input_str.lower() == 'undo':
@@ -22,6 +22,7 @@ while True:
                 print("Cannot perform multiplication or division without a previous result.")
                 continue
             else:
+                prev = output
                 if op == '+':
                     output += num
                 elif op == '-':
@@ -33,7 +34,7 @@ while True:
                         print("Cannot divide by zero.")
                         continue
                     output /= num
-            res_stack.append(output)
+            res_stack.append(prev)
             print(f"Current result: {output}")
         except ValueError:
             print("Invalid input. Please enter an operator followed by a number.")
