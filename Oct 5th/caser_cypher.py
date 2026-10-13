@@ -1,8 +1,5 @@
-
-
-
+alphabets = "abcdefghijklmnopqrstuvwxyz"
 def encrypt(char, shift):
-    alphabets = "abcdefghijklmnopqrstuvwxyz"
     if char.isalpha():
         index = alphabets.index(char.lower())
         new_index = (index + shift) % len(alphabets)
