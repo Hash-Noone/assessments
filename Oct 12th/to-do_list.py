@@ -19,7 +19,7 @@ while True:
             task = input("Enter task you want to do: ").strip()
             if task:
                 tasks.append(task)
-                print(f"Task {task} removed successfully")
+                print(f"Task {task} added successfully")
             else:
                 print("Enter a valid task")
         case "2":#view tasks
