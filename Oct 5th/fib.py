@@ -1,12 +1,19 @@
-def fib(n, mem = None):
-    if mem == None:
-        mem = {}
+from functools import lru_cache
+
+def memoize(func):
+    mem = {}
+    def wrapper(*args):
+        if args in mem:
+            return mem[args]
+        result = func(*args)
+        mem[args] = result
+        return result
+    return wrapper
+@memoize
+def fib(n):
     if n < 2:
         return n
-    if n in mem:
-        return mem[n]
-    mem[n] = fib(n - 1, mem) + fib(n - 2, mem)
-    return mem[n]
+    return fib(n - 1) + fib(n - 2)
 
 # def MinCost(n, cost, mem):
 #     if n in mem:

@@ -16,14 +16,14 @@ while True:
         break
     except ValueError:
         print("Enter a number")
-years = []
 if leap_year(year):
     print(f"{year} is a leap year")
 else:
     print(f"{year} is not a leap year")
 
-while len(years) < 3:
-    year += 1
-    if leap_year(year):
-        print(f"{year} is a leap year")
-        years.append(year)
+# years = []
+# while len(years) < 3:
+#     year += 1
+#     if leap_year(year):
+#         print(f"{year} is a leap year")
+#         years.append(year)
