@@ -153,12 +153,83 @@ def spiral_order(matrix):
                 result.append(row.pop(0))
     return result
 
+def restock(stock, item, qty):
+    if qty < 1:
+        return ("Can't restock with a quantity less than 1")
+    stock[item] = stock.get(item,0) + qty
+    return stock
+
+def sell(stock, item, qty):
+    if not stock.get(item,0):
+        return ("Can't sell what we don't have")
+    if not ( 1 < qty < stock.get(item)):
+        return ("wrong quantity")
+    stock[item] -= qty
+    return stock, "ok"
+
+def low_stock(stock, limit):
+    return [key for key in stock if stock[key] < limit ]
+
+def total_items(stock):
+    return sum([value for value in stock.values()])
+
+stock = {"rice": 10, "beans": 5}
+print(total_items(stock) 
+)
 
 
+def valid(matrix):
+    countx = 0
+    counto = 0
 
-der = ([[1, 2, 3,5],
-        [4, 5, 6,6],
-        [7, 8, 9,7],
-        [10,11,12,8]]) 
-print(spiral_order(der))  # Output: [1, 2, 3, 6, 9, 8, 7, 4, 5]
+    if len(matrix) != 3 or any(len(row) != 3 for row in matrix):
+        return False
 
+    for row in matrix:
+        for play in row:
+            if play not in ("X", "O", " "):
+                return False
+
+            if play == "X":
+                countx += 1
+            elif play == "O":
+                counto += 1
+
+    return abs(countx - counto) <= 1
+
+
+def tictactoe(matrix):
+    if not valid(matrix):
+        return "Invalid"
+
+    winners = set()
+
+    for num in range(3):
+        # Check rows
+        if matrix[num][0] != " " and matrix[num][0] == matrix[num][1] == matrix[num][2]:
+            winners.add(matrix[num][0])
+
+        # Check columns
+        if matrix[0][num] != " " and matrix[0][num] == matrix[1][num] == matrix[2][num]:
+            winners.add(matrix[0][num])
+
+    # Main diagonal
+    if matrix[0][0] != " " and matrix[0][0] == matrix[1][1] == matrix[2][2]:
+        winners.add(matrix[0][0])
+
+    # Anti-diagonal
+    if matrix[2][0] != " " and matrix[2][0] == matrix[1][1] == matrix[0][2]:
+        winners.add(matrix[2][0])
+
+    # Determine winner
+    if len(winners) > 1:
+        return "Invalid"
+
+    if winners:
+        return next(iter(winners)) + " wins"
+
+    # Check draw
+    if all(cell != " " for row in matrix for cell in row):
+        return "Draw"
+
+    return "In progress"
