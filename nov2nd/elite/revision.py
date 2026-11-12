@@ -181,6 +181,7 @@ print(total_items(stock)
 def valid(matrix):
     countx = 0
     counto = 0
+    empty_count = 0
 
     if len(matrix) != 3 or any(len(row) != 3 for row in matrix):
         return False
@@ -194,12 +195,17 @@ def valid(matrix):
                 countx += 1
             elif play == "O":
                 counto += 1
+            else:
+                empty_count += 1
 
-    return abs(countx - counto) <= 1
+    is_valid = countx == counto or countx == counto + 1
+    is_full = empty_count == 0
 
+    return is_valid, is_full
 
 def tictactoe(matrix):
-    if not valid(matrix):
+    is_valid, is_full = valid(matrix)
+    if not is_valid:
         return "Invalid"
 
     winners = set()
@@ -229,7 +235,7 @@ def tictactoe(matrix):
         return next(iter(winners)) + " wins"
 
     # Check draw
-    if all(cell != " " for row in matrix for cell in row):
+    if is_full :
         return "Draw"
 
     return "In progress"

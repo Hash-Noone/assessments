@@ -14,19 +14,19 @@ roman = {
     "M": 1000,
 }
 
-def roman_to_number(char):
-    prev = 0
-    res = 0
-    for index in range(len(char)-1,-1,-1):
-        if char[index] in roman:
-            if prev > roman[char[index]]:
-                res -= roman[char[index]]
-            else:
-                res += roman[char[index]]
-                prev = roman[char[index]]
-        else:
+def roman_to_number(s):
+    total = prev = 0
+
+    for char in reversed(s):
+        value = roman.get(char, 0)
+
+        if not value:
             return "Invalid Input"
-    return res
+
+        total += -value if value < prev else value
+        prev = max(prev, value)
+
+    return total
 
 num = 0
 sentence = input("Enter your roman numeral here: ").upper()
