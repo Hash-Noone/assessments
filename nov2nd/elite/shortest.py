@@ -2,9 +2,9 @@ from collections import deque
 
 
 graph = {
-    "A": ["B", "C", "G"],
+    "A": ["B", "C"],
     "B": ["D"],
-    "C": ["D", "E"],
+    "C": ["D"],
     "D": ["E"],
     "E": ["F"],
     "F": []
@@ -139,5 +139,5 @@ def shortest_paths(graph, start, goal):
 
     return paths
 
-print(has_cycle(graph))
+print(shortest_paths(graph, "A", "F"))
         

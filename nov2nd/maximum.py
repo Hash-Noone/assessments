@@ -1,18 +1,13 @@
 def brute(nums):
     max_sum = float("-inf")
     indices = []
-    for index, num1 in enumerate(nums):
-        total = num1
-        for indexs, num2 in enumerate(nums[index+1:], start= index+1):
-            # print(indexs,index)
+    for index, _ in enumerate(nums):
+        total = 0
+        for indexs, num2 in enumerate(nums[index:], start= index):
             total += num2
             if total > max_sum:
                 max_sum = total
                 indices = [index, indexs]
-    for index, num in enumerate(nums):
-        if num > max_sum:
-            max_sum = num
-            indices = [index, index]
     return max_sum, indices
 
 def sin_pas(nums):
@@ -26,15 +21,15 @@ def sin_pas(nums):
             max_sum = current_sum
             indices = [left, right]
         if nums[left] < nums[right]:
-            left += 1
             current_sum -= nums[left]
+            left += 1
         else:
-            right -= 1
             current_sum -= nums[right]
+            right -= 1
     return max_sum, indices
 
 
 
 
-nums = [-2, 1, -3, 4, -1, 2, 1, -5, 4]
+nums = [-2, 1, -3,  4, -1, 2, 1, -5, 4]
 print(sin_pas(nums))
