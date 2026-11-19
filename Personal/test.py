@@ -1,0 +1,1 @@
+print(sorted("aa") in sorted("aab"))
