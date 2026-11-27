@@ -14,4 +14,7 @@ def transpose_matrix(matrix):
             result[col][row] = matrix[row][col]
     return result
 
+def reverse_string(text):
+    return text[::-1]
+
 print(matrix_row_and_col_checker([[],[]]))

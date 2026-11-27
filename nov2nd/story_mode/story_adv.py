@@ -233,6 +233,7 @@ def do_sell(state, room, parts):
     buyers = room.get("buyers")
     if not buyers:
         print("Nobody here wants to buy your things.")
+        
         return
     wanted = "_".join(parts[1:])
     goods = [i for i in state["inv"] if i in buyers]

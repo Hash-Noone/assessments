@@ -151,7 +151,7 @@ def spiral_order(matrix):
         if matrix and matrix[0]:
             for row in matrix[::-1]:
                 result.append(row.pop(0))
-    return result
+    return result   
 
 def restock(stock, item, qty):
     if qty < 1:
